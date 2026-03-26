@@ -1,0 +1,2537 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>KidsVeda – बच्चों का Natural Behaviour Support</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Halant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D92B2B;
+    --red-dark: #A81E1E;
+    --red-light: #FF4444;
+    --yellow: #FFD700;
+    --yellow-light: #FFF176;
+    --yellow-dark: #F5A500;
+    --white: #FFFFFF;
+    --off-white: #FFF8F0;
+    --text-dark: #1A0A00;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Hind', sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .page-wrap {
+    width: 100%;
+    max-width: 450px;
+    background: var(--white);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ===== HOOK SECTION ===== */
+  .hook {
+    background: var(--red-dark);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .hook-zigzag-top {
+    background: var(--yellow);
+    height: 28px;
+    clip-path: polygon(0 0, 100% 0, 100% 40%, 95% 100%, 90% 40%, 85% 100%, 80% 40%, 75% 100%, 70% 40%, 65% 100%, 60% 40%, 55% 100%, 50% 40%, 45% 100%, 40% 40%, 35% 100%, 30% 40%, 25% 100%, 20% 40%, 15% 100%, 10% 40%, 5% 100%, 0 40%);
+    animation: pulseZig 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseZig {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .hook-inner {
+    padding: 24px 20px 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .hook-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--red-dark);
+    font-family: 'Halant', serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 5px 18px;
+    border-radius: 30px;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+    animation: badgePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transform: scale(0);
+  }
+
+  @keyframes badgePop {
+    to { transform: scale(1); }
+  }
+
+  .hook h1 {
+    font-family: 'Halant', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--yellow);
+    line-height: 1.3;
+    margin-bottom: 10px;
+    animation: slideDown 0.8s ease forwards;
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  @keyframes slideDown {
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .hook h2 {
+    font-family: 'Hind', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    animation: slideDown 1s ease 0.2s forwards;
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  .hook-product-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .hook-product-wrap::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 120px;
+    background: radial-gradient(ellipse, rgba(255,215,0,0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+  }
+
+  .hook-product-img {
+    width: 200px;
+    height: 220px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    animation: floatUp 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+  }
+
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hook-bottom {
+    background: var(--yellow);
+    clip-path: polygon(0 30%, 5% 0, 10% 30%, 15% 0, 20% 30%, 25% 0, 30% 30%, 35% 0, 40% 30%, 45% 0, 50% 30%, 55% 0, 60% 30%, 65% 0, 70% 30%, 75% 0, 80% 30%, 85% 0, 90% 30%, 95% 0, 100% 30%, 100% 100%, 0 100%);
+    height: 36px;
+    margin-top: -2px;
+  }
+
+  /* ===== SCROLLING OFFER BAR ===== */
+  .offer-bar {
+    background: var(--yellow);
+    padding: 10px 0;
+    overflow: hidden;
+  }
+
+  .offer-track {
+    display: flex;
+    gap: 0;
+    animation: scrollLeft 12s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .offer-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    font-family: 'Halant', serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--red-dark);
+  }
+
+  .offer-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--red-dark);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ===== PAIN SECTION ===== */
+  .pain-section {
+    background: var(--off-white);
+    padding: 30px 20px;
+    position: relative;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-label-line {
+    flex: 1;
+    height: 2px;
+    background: var(--red);
+  }
+
+  .section-label span {
+    font-family: 'Halant', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .pain-section h3 {
+    font-family: 'Halant', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--red-dark);
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .pain-subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 22px;
+    line-height: 1.6;
+  }
+
+  /* Staggered pain cards */
+  .pain-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pain-card {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .pain-card:hover { transform: scale(1.02); }
+
+  .pain-card.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .pain-card-img-wrap {
+    flex-shrink: 0;
+    width: 110px;
+    height: 90px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 4px 4px 0 var(--red);
+  }
+
+  .pain-card.reverse .pain-card-img-wrap {
+    box-shadow: -4px 4px 0 var(--red);
+  }
+
+  .pain-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pain-card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    gap: 4px;
+  }
+
+  .pain-card-img-placeholder span {
+    font-size: 10px;
+    font-family: 'Hind', sans-serif;
+    color: #555;
+    font-weight: 600;
+  }
+
+  .pain-card-text {
+    flex: 1;
+    padding: 14px 16px;
+    background: var(--white);
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .pain-card-text::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 8px solid transparent;
+  }
+
+  .pain-card:not(.reverse) .pain-card-text::before {
+    left: -14px;
+    border-right-color: var(--white);
+    border-left: none;
+  }
+
+  .pain-card.reverse .pain-card-text::before {
+    right: -14px;
+    border-left-color: var(--white);
+    border-right: none;
+  }
+
+  .pain-card-text h4 {
+    font-family: 'Halant', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--red-dark);
+    margin-bottom: 4px;
+  }
+
+  .pain-card-text p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* Causes block */
+  .causes-block {
+    background: var(--red-dark);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 20px;
+    color: var(--white);
+  }
+
+  .causes-block h4 {
+    font-family: 'Halant', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .causes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .cause-item {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 12px 10px;
+    text-align: center;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .cause-item:hover {
+    background: rgba(255,215,0,0.2);
+    transform: translateY(-3px);
+  }
+
+  .cause-item .cause-icon-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto 8px;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .cause-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cause-item p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  /* ===== PRODUCT INTRO ===== */
+  .product-intro {
+    background: var(--red-dark);
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-intro::before {
+    content: 'KidsVeda';
+    position: absolute;
+    font-family: 'Halant', serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .product-intro-head {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .product-intro-head .pi-tag {
+    background: var(--yellow);
+    color: var(--red-dark);
+    font-family: 'Halant', serif;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .product-intro-head h3 {
+    font-family: 'Halant', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--yellow);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .product-intro-head p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+  }
+
+  .pi-center-img {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  .pi-center-img img {
+    width: 180px;
+    height: 200px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+    animation: floatUp 3s ease-in-out 0.5s infinite;
+  }
+
+  .pi-badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .pi-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,215,0,0.4);
+    border-radius: 30px;
+    padding: 8px 14px;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .pi-badge:hover {
+    background: rgba(255,215,0,0.2);
+    transform: scale(1.05);
+  }
+
+  .pi-badge .check {
+    color: var(--yellow);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-works {
+    background: var(--white);
+    padding: 30px 20px;
+  }
+
+  .section-title {
+    font-family: 'Halant', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--red-dark);
+    text-align: center;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .section-sub {
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  /* Diagonal cards for how it works */
+  .works-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 16px rgba(217,43,43,0.12);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .work-item:nth-child(even) {
+    grid-template-columns: 1fr 70px;
+  }
+
+  .work-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(217,43,43,0.2);
+  }
+
+  .work-img {
+    background: var(--red);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .work-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0.85;
+  }
+
+  .work-img .work-emoji {
+    font-size: 26px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .work-img .work-num {
+    font-family: 'Halant', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--yellow);
+    position: relative;
+    z-index: 2;
+  }
+
+  .work-text {
+    background: var(--off-white);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .work-item:nth-child(even) .work-text {
+    order: -1;
+    background: var(--red-dark);
+  }
+
+  .work-item:nth-child(even) .work-text h4 {
+    color: var(--yellow);
+  }
+
+  .work-item:nth-child(even) .work-text p {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .work-text h4 {
+    font-family: 'Halant', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--red-dark);
+    margin-bottom: 5px;
+  }
+
+  .work-text p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ===== BEFORE AFTER ===== */
+  .before-after {
+    background: var(--red-dark);
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .before-after .section-title { color: var(--yellow); }
+  .before-after .section-sub { color: rgba(255,255,255,0.7); }
+
+  .ba-container {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    cursor: ew-resize;
+    user-select: none;
+    touch-action: none;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  .ba-before, .ba-after {
+    position: absolute;
+    top: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ba-before {
+    background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%);
+    right: 0; left: 0;
+  }
+
+  .ba-after {
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+    left: 0;
+    width: var(--split, 50%);
+    z-index: 2;
+  }
+
+  .ba-img-content {
+    text-align: center;
+    padding: 16px;
+  }
+
+  .ba-img-content .ba-emoji { font-size: 44px; display: block; margin-bottom: 8px; }
+  .ba-img-content .ba-label {
+    font-family: 'Halant', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .ba-img-content .ba-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .ba-divider {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: var(--split, 50%);
+    transform: translateX(-50%);
+    width: 3px;
+    background: var(--yellow);
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .ba-handle {
+    position: absolute;
+    top: 50%;
+    left: var(--split, 50%);
+    transform: translate(-50%, -50%);
+    width: 42px;
+    height: 42px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    cursor: ew-resize;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    transition: transform 0.1s;
+    pointer-events: none;
+  }
+
+  .ba-handle::after {
+    content: '◀▶';
+    font-size: 12px;
+    color: var(--red-dark);
+    font-weight: 900;
+  }
+
+  .ba-tags {
+    position: absolute;
+    top: 10px;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    z-index: 6;
+    pointer-events: none;
+  }
+
+  .ba-tag {
+    font-family: 'Halant', serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+
+  .ba-tag.before { background: rgba(139,0,0,0.8); color: var(--white); }
+  .ba-tag.after { background: rgba(46,125,50,0.8); color: var(--white); }
+
+  .ba-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .ba-point {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+
+  .ba-point:hover { transform: scale(1.03); }
+
+  .ba-point-img {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ba-point-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .ba-point-img .ba-point-emoji {
+    position: relative;
+    z-index: 2;
+  }
+
+  .ba-point.b-col .ba-point-img { background: #8B0000; }
+  .ba-point.a-col .ba-point-img { background: #2E7D32; }
+
+  .ba-point-label {
+    padding: 8px 10px;
+    text-align: center;
+  }
+
+  .ba-point.b-col .ba-point-label { background: rgba(139,0,0,0.15); }
+  .ba-point.a-col .ba-point-label { background: rgba(46,125,50,0.15); }
+
+  .ba-point-label .ba-point-title {
+    font-family: 'Halant', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .ba-point-label .ba-point-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.3;
+  }
+
+  /* ===== AYURVEDA SECTION ===== */
+  .ayurveda {
+    background: var(--off-white);
+    padding: 30px 20px;
+  }
+
+  .ayur-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    background: var(--red-dark);
+    border-radius: 14px;
+    padding: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ayur-header::after {
+    content: '🌿';
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-size: 80px;
+    opacity: 0.1;
+  }
+
+  .ayur-header-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid var(--yellow);
+    background: #1a0a00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+  }
+
+  .ayur-header-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ayur-header-text h4 {
+    font-family: 'Halant', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+
+  .ayur-header-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+  }
+
+  .ayur-points {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ayur-point {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+
+  .ayur-point:hover { transform: translateX(4px); }
+
+  .ayur-point-img {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--red-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    position: relative;
+  }
+
+  .ayur-point-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .ayur-point-img .ap-emoji {
+    position: relative;
+    z-index: 2;
+  }
+
+  .ayur-point-content {
+    flex: 1;
+    padding: 12px 14px 12px 0;
+  }
+
+  .ayur-point-content h5 {
+    font-family: 'Halant', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--red-dark);
+    margin-bottom: 4px;
+  }
+
+  .ayur-point-content p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ===== INGREDIENTS ===== */
+  .ingredients {
+    background: var(--red-dark);
+    padding: 30px 20px;
+  }
+
+  .ingredients .section-title { color: var(--yellow); }
+  .ingredients .section-sub { color: rgba(255,255,255,0.7); }
+
+  .ingr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 6px;
+  }
+
+  .ingr-card {
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,215,0,0.2);
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+
+  .ingr-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--yellow);
+    background: rgba(255,215,0,0.12);
+  }
+
+  .ingr-card-img {
+    height: 100px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    position: relative;
+  }
+
+  .ingr-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .ingr-card-img .ingr-emoji {
+    position: relative;
+    z-index: 2;
+  }
+
+  .ingr-card-body {
+    padding: 12px;
+  }
+
+  .ingr-card-body h5 {
+    font-family: 'Halant', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+
+  .ingr-card-body p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  /* ===== HOW TO USE ===== */
+  .how-use {
+    background: var(--white);
+    padding: 30px 20px;
+  }
+
+  .use-steps {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 10px;
+  }
+
+  .use-steps::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 16px;
+    bottom: 16px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--red), var(--yellow));
+  }
+
+  .use-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+  }
+
+  .use-step:hover { transform: translateX(5px); }
+
+  .use-step-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--red-dark);
+    border: 3px solid var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: -29px;
+    font-family: 'Halant', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--yellow);
+    position: relative;
+    z-index: 2;
+  }
+
+  .use-step-content {
+    flex: 1;
+    background: var(--off-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .use-step-img {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    background: var(--red-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    font-size: 30px;
+  }
+
+  .use-step-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .use-step-img .use-emoji {
+    position: relative;
+    z-index: 2;
+  }
+
+  .use-step-text {
+    padding: 10px 14px;
+  }
+
+  .use-step-text h5 {
+    font-family: 'Halant', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--red-dark);
+    margin-bottom: 3px;
+  }
+
+  .use-step-text p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ===== TRUST SECTION ===== */
+  .trust-section {
+    background: var(--yellow);
+    padding: 20px;
+  }
+
+  .trust-title {
+    font-family: 'Halant', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--red-dark);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .trust-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .trust-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+
+  .trust-item:hover { transform: scale(1.05); }
+
+  .trust-icon { font-size: 24px; margin-bottom: 6px; }
+
+  .trust-label {
+    font-family: 'Halant', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--red-dark);
+    line-height: 1.3;
+  }
+
+  /* ===== OFFER SECTION ===== */
+  .offer-section {
+    background: var(--red-dark);
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .offer-section::before {
+    content: '🔥';
+    font-size: 200px;
+    position: absolute;
+    right: -40px;
+    top: -30px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .offer-section .section-title { color: var(--yellow); }
+
+  .offer-countdown {
+    background: rgba(0,0,0,0.3);
+    border: 2px solid var(--yellow);
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+    margin: 16px 0;
+  }
+
+  .offer-countdown-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .countdown-digits {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .cd-box {
+    background: var(--yellow);
+    color: var(--red-dark);
+    font-family: 'Halant', serif;
+    font-size: 28px;
+    font-weight: 700;
+    width: 54px;
+    height: 54px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .cd-box span { font-size: 10px; font-weight: 500; margin-top: 2px; }
+
+  .cd-colon {
+    color: var(--yellow);
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .offer-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .offer-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 12px;
+    padding: 12px 14px;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .offer-card:hover {
+    background: rgba(255,215,0,0.15);
+    transform: translateX(5px);
+  }
+
+  .offer-card-icon { font-size: 28px; flex-shrink: 0; }
+
+  .offer-card-text h5 {
+    font-family: 'Halant', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 2px;
+  }
+
+  .offer-card-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .offer-price-wrap {
+    background: var(--yellow);
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .offer-price-original {
+    font-size: 14px;
+    color: rgba(100,0,0,0.6);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .offer-price-current {
+    font-family: 'Halant', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--red-dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .offer-price-save {
+    font-size: 13px;
+    color: #1a0a00;
+    font-weight: 600;
+  }
+
+  /* ===== ORDER FORM ===== */
+  .order-section {
+    background: var(--white);
+    padding: 30px 20px;
+  }
+
+  .order-section .section-title { color: var(--red-dark); }
+
+  .order-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-family: 'Halant', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--red-dark);
+    padding-left: 4px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-family: 'Hind', sans-serif;
+    font-size: 15px;
+    color: var(--text-dark);
+    background: var(--off-white);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--red);
+    background: var(--white);
+  }
+
+  .form-group textarea {
+    resize: none;
+    height: 90px;
+  }
+
+  .qty-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, var(--red-dark), var(--red-light));
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-family: 'Halant', serif;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(217,43,43,0.4);
+    margin-top: 4px;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(217,43,43,0.5);
+  }
+
+  .submit-btn:active { transform: translateY(0); }
+
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.4s;
+  }
+
+  .submit-btn:hover::after { left: 100%; }
+
+  .loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .loading-overlay.active { display: flex; }
+
+  .loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255,215,0,0.3);
+    border-top-color: var(--yellow);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-text {
+    font-family: 'Halant', serif;
+    font-size: 18px;
+    color: var(--yellow);
+    text-align: center;
+  }
+
+  .success-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .success-popup.active { display: flex; }
+
+  .success-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 30px 24px;
+    text-align: center;
+    max-width: 320px;
+    width: 100%;
+  }
+
+  .success-icon { font-size: 56px; margin-bottom: 12px; }
+
+  .success-card h3 {
+    font-family: 'Halant', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--red-dark);
+    margin-bottom: 8px;
+  }
+
+  .success-card p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .success-close {
+    background: var(--red-dark);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-family: 'Halant', serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ===== REVIEWS ===== */
+  .reviews {
+    background: var(--off-white);
+    padding: 30px 20px;
+  }
+
+  .review-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 6px;
+  }
+
+  .review-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+
+  .review-card:hover { transform: translateY(-3px); }
+
+  .review-header {
+    background: var(--red-dark);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .reviewer-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--yellow);
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .reviewer-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .reviewer-info h5 {
+    font-family: 'Halant', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 2px;
+  }
+
+  .stars { color: var(--yellow); font-size: 12px; }
+
+  .review-body {
+    padding: 14px;
+  }
+
+  .review-body-img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: var(--off-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    overflow: hidden;
+  }
+
+  .review-body-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .review-text {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .review-tag {
+    display: inline-block;
+    background: rgba(217,43,43,0.1);
+    color: var(--red-dark);
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Halant', serif;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-section {
+    background: var(--white);
+    padding: 30px 20px;
+  }
+
+  .faq-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .faq-item {
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .faq-q {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: var(--off-white);
+    transition: background 0.2s;
+    gap: 10px;
+  }
+
+  .faq-q:hover { background: #ffe8e8; }
+
+  .faq-q-text {
+    font-family: 'Halant', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--red-dark);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .faq-arrow {
+    width: 24px;
+    height: 24px;
+    background: var(--red-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--white);
+    font-size: 14px;
+    transition: transform 0.3s;
+  }
+
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 16px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding: 12px 16px 14px;
+  }
+
+  /* ===== DISCLAIMER ===== */
+  .disclaimer {
+    background: var(--red-dark);
+    padding: 20px;
+  }
+
+  .disclaimer-inner {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .disclaimer-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+  .disclaimer-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+  }
+
+  .disclaimer-text strong {
+    color: var(--yellow);
+    display: block;
+    font-family: 'Halant', serif;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  /* ===== STICKY CTA ===== */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 450px;
+    background: var(--red-dark);
+    padding: 10px 16px;
+    z-index: 100;
+    border-top: 2px solid var(--yellow);
+  }
+
+  .sticky-cta-btn {
+    display: block;
+    background: linear-gradient(135deg, var(--yellow), var(--yellow-dark));
+    color: var(--red-dark);
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'Halant', serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    animation: pulse-cta 2s ease-in-out infinite;
+    transition: transform 0.2s;
+  }
+
+  .sticky-cta-btn:hover { transform: scale(1.02); }
+
+  @keyframes pulse-cta {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,215,0,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(255,215,0,0); }
+  }
+
+  /* Footer spacer for sticky CTA */
+  .spacer { height: 80px; background: var(--red-dark); }
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">आपका Order Place हो रहा है…</div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-popup" id="successPopup">
+  <div class="success-card">
+    <div class="success-icon">🎉</div>
+    <h3>Order Confirmed!</h3>
+    <p>आपका order सफलतापूर्वक place हो गया है। हमारी team जल्द ही आपसे contact करेगी।</p>
+    <button class="success-close" onclick="document.getElementById('successPopup').classList.remove('active')">धन्यवाद!</button>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ===== HOOK SECTION ===== -->
+  <section class="hook">
+    <div class="hook-zigzag-top"></div>
+    <div class="hook-inner">
+      <div class="hook-badge">🌿 AYURVEDIC NATURAL SUPPORT</div>
+      <h1>बच्चों के गुस्से और चिड़चिड़ेपन को अब समझें और सही दिशा दें</h1>
+      <h2>natural support के साथ behaviour में धीरे-धीरे positive बदलाव संभव है</h2>
+      <div class="hook-product-wrap">
+        <img class="hook-product-img" src="./Image/product.png" alt="KidsVeda Product" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="hook-bottom"></div>
+  </section>
+
+  <!-- SCROLLING OFFER BAR -->
+  <div class="offer-bar">
+    <div class="offer-track">
+      <span class="offer-item"><span class="offer-dot"></span>🚚 Free Delivery</span>
+      <span class="offer-item"><span class="offer-dot"></span>📋 Free Diet Chart</span>
+      <span class="offer-item"><span class="offer-dot"></span>💵 Cash on Delivery</span>
+      <span class="offer-item"><span class="offer-dot"></span>🔖 10% Discount</span>
+      <span class="offer-item"><span class="offer-dot"></span>✅ Ayurvedic Certified</span>
+      <span class="offer-item"><span class="offer-dot"></span>🚚 Free Delivery</span>
+      <span class="offer-item"><span class="offer-dot"></span>📋 Free Diet Chart</span>
+      <span class="offer-item"><span class="offer-dot"></span>💵 Cash on Delivery</span>
+      <span class="offer-item"><span class="offer-dot"></span>🔖 10% Discount</span>
+      <span class="offer-item"><span class="offer-dot"></span>✅ Ayurvedic Certified</span>
+    </div>
+  </div>
+
+  <!-- ===== PAIN SECTION ===== -->
+  <section class="pain-section">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>क्या आपका बच्चा ऐसा करता है?</span>
+      <div class="section-label-line"></div>
+    </div>
+
+    <h3>क्या आपका बच्चा बार-बार गुस्सा करता है?</h3>
+    <p class="pain-subtitle">छोटी-छोटी बात पर irritate हो जाता है? बात नहीं मानता और जल्दी react करता है?</p>
+
+    <div class="pain-cards">
+      <div class="pain-card">
+        <div class="pain-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=220&h=180&fit=crop&auto=format" alt="गुस्सा बच्चा" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="pain-card-text">
+          <h4>बार-बार गुस्सा</h4>
+          <p>छोटी-छोटी बातों पर बच्चे का गुस्सा control से बाहर हो जाता है</p>
+        </div>
+      </div>
+
+      <div class="pain-card reverse">
+        <div class="pain-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1604091777546-76c89e9fcca0?w=220&h=180&fit=crop&auto=format" alt="चिड़चिड़ा बच्चा" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="pain-card-text">
+          <h4>चिड़चिड़ापन</h4>
+          <p>हर छोटी बात पर irritate होना और overreact करना बच्चे की आदत बन जाती है</p>
+        </div>
+      </div>
+
+      <div class="pain-card">
+        <div class="pain-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=220&h=180&fit=crop&auto=format" alt="बात न मानना" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="pain-card-text">
+          <h4>बात नहीं मानता</h4>
+          <p>Parents की बात सुनने और follow करने में बच्चे को तकलीफ होती है</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="causes-block">
+      <h4>👉 यह सिर्फ जिद नहीं — इसके पीछे हो सकते हैं ये कारण</h4>
+      <div class="causes-grid">
+        <div class="cause-item">
+          <div class="cause-icon-wrap"><img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=100&h=100&fit=crop&auto=format" alt="brain"></div>
+          <p>दिमाग का imbalance (over stimulation)</p>
+        </div>
+        <div class="cause-item">
+          <div class="cause-icon-wrap"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=100&h=100&fit=crop&auto=format" alt="screen time"></div>
+          <p>ज्यादा screen time का असर</p>
+        </div>
+        <div class="cause-item">
+          <div class="cause-icon-wrap"><img src="https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=100&h=100&fit=crop&auto=format" alt="नींद"></div>
+          <p>कम नींद और गलत routine</p>
+        </div>
+        <div class="cause-item">
+          <div class="cause-icon-wrap"><img src="https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?w=100&h=100&fit=crop&auto=format" alt="stress"></div>
+          <p>emotional stress या attention की कमी</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCT INTRO ===== -->
+  <section class="product-intro">
+    <div class="product-intro-head">
+      <div class="pi-tag">🌿 INTRODUCING</div>
+      <h3>KidsVeda – Ayurvedic Natural Support for Kids Behaviour</h3>
+      <p>एक ऐसा natural support system जो बच्चों के mind को calm करने, focus बढ़ाने और behaviour balance करने में मदद करता है।</p>
+    </div>
+
+    <div class="pi-center-img">
+      <img src="./Image/product.png" alt="KidsVeda" onerror="this.style.display='none'">
+    </div>
+
+    <div class="pi-badges">
+      <div class="pi-badge"><span class="check">✔</span> बिना harsh chemicals</div>
+      <div class="pi-badge"><span class="check">✔</span> Safe Ayurvedic formula</div>
+      <div class="pi-badge"><span class="check">✔</span> रोज़ाना routine में आसान</div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-works">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>कैसे काम करता है?</span>
+      <div class="section-label-line"></div>
+    </div>
+    <h2 class="section-title">KidsVeda का Formula कैसे काम करता है?</h2>
+    <p class="section-sub">बच्चों के brain और nervous system को naturally support करके</p>
+
+    <div class="works-list">
+      <div class="work-item">
+        <div class="work-img" style="background: var(--red-dark); padding:0; overflow:hidden; position:relative;">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=140&h=120&fit=crop&auto=format" style="width:100%;height:100%;object-fit:cover;opacity:0.6;position:absolute;top:0;left:0;">
+          <span class="work-emoji" style="position:relative;z-index:2;">🧠</span>
+          <span class="work-num" style="position:relative;z-index:2;">01</span>
+        </div>
+        <div class="work-text">
+          <h4>Mind को Calm करता है</h4>
+          <p>बच्चे के overactive brain को शांत करके सही balance देता है</p>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-img" style="background: var(--red); padding:0; overflow:hidden; position:relative;">
+          <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=140&h=120&fit=crop&auto=format" style="width:100%;height:100%;object-fit:cover;opacity:0.5;position:absolute;top:0;left:0;">
+          <span class="work-emoji" style="position:relative;z-index:2;">😌</span>
+          <span class="work-num" style="position:relative;z-index:2;">02</span>
+        </div>
+        <div class="work-text">
+          <h4>Stress और Irritability कम करता है</h4>
+          <p>Stress और चिड़चिड़ेपन को reduce करने में naturally मदद करता है</p>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-img" style="background: var(--red-dark); padding:0; overflow:hidden; position:relative;">
+          <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=140&h=120&fit=crop&auto=format" style="width:100%;height:100%;object-fit:cover;opacity:0.5;position:absolute;top:0;left:0;">
+          <span class="work-emoji" style="position:relative;z-index:2;">🎯</span>
+          <span class="work-num" style="position:relative;z-index:2;">03</span>
+        </div>
+        <div class="work-text">
+          <h4>Focus और Concentration बढ़ाता है</h4>
+          <p>पढ़ाई और activities में बच्चे की concentration improve होती है</p>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-img" style="background: var(--red); padding:0; overflow:hidden; position:relative;">
+          <img src="https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=140&h=120&fit=crop&auto=format" style="width:100%;height:100%;object-fit:cover;opacity:0.5;position:absolute;top:0;left:0;">
+          <span class="work-emoji" style="position:relative;z-index:2;">😴</span>
+          <span class="work-num" style="position:relative;z-index:2;">04</span>
+        </div>
+        <div class="work-text">
+          <h4>Sleep Cycle Balance करता है</h4>
+          <p>अच्छी नींद से बच्चे का overall behaviour naturally बेहतर होता है</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: var(--red-dark); border-radius: 14px; padding: 14px 16px; margin-top: 18px; text-align: center;">
+      <p style="color: var(--yellow); font-family: 'Halant', serif; font-size: 17px; font-weight: 700;">👉 Result: बच्चा धीरे-धीरे शांत और responsive बनता है</p>
+    </div>
+  </section>
+
+  <!-- ===== BEFORE / AFTER ===== -->
+  <section class="before-after">
+    <div class="section-label">
+      <div class="section-label-line" style="background: rgba(255,215,0,0.4);"></div>
+      <span style="color:var(--yellow)">पहले और बाद में</span>
+      <div class="section-label-line" style="background: rgba(255,215,0,0.4);"></div>
+    </div>
+    <h2 class="section-title">KidsVeda से पहले vs बाद में</h2>
+    <p class="section-sub">Slide करके देखें बदलाव</p>
+
+    <!-- Interactive before-after slider -->
+    <div class="ba-container" id="baSlider">
+      <div class="ba-before">
+        <div class="ba-img-content">
+          <span class="ba-emoji">😡</span>
+          <span class="ba-label">KidsVeda से पहले</span>
+          <span class="ba-desc">बच्चा गुस्सैल, चिड़चिड़ा<br>और stressed रहता था</span>
+        </div>
+      </div>
+      <div class="ba-after" id="baAfter" style="--split: 50%;">
+        <div class="ba-img-content">
+          <span class="ba-emoji">😊</span>
+          <span class="ba-label">KidsVeda के बाद</span>
+          <span class="ba-desc">बच्चा शांत, happy<br>और focused रहता है</span>
+        </div>
+      </div>
+      <div class="ba-divider" id="baDivider"></div>
+      <div class="ba-handle" id="baHandle"></div>
+      <div class="ba-tags">
+        <span class="ba-tag before">पहले</span>
+        <span class="ba-tag after">बाद में</span>
+      </div>
+    </div>
+
+    <!-- Before-After point cards -->
+    <div class="ba-points">
+      <div class="ba-point b-col">
+        <div class="ba-point-img">
+          <img src="https://images.unsplash.com/photo-1604091777546-76c89e9fcca0?w=200&h=160&fit=crop&auto=format" alt="angry child" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.7;">
+          <span class="ba-point-emoji" style="position:relative;z-index:2;">😤</span>
+        </div>
+        <div class="ba-point-label">
+          <span class="ba-point-title">पहले</span>
+          <span class="ba-point-desc">रोज़ गुस्सा और चिड़चिड़ापन</span>
+        </div>
+      </div>
+      <div class="ba-point a-col">
+        <div class="ba-point-img">
+          <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=200&h=160&fit=crop&auto=format" alt="calm child" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.7;">
+          <span class="ba-point-emoji" style="position:relative;z-index:2;">😌</span>
+        </div>
+        <div class="ba-point-label">
+          <span class="ba-point-title">बाद में</span>
+          <span class="ba-point-desc">शांत और calm nature</span>
+        </div>
+      </div>
+      <div class="ba-point b-col">
+        <div class="ba-point-img">
+          <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&h=160&fit=crop&auto=format" alt="unfocused" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.7;filter:saturate(0)">
+          <span class="ba-point-emoji" style="position:relative;z-index:2;">😵</span>
+        </div>
+        <div class="ba-point-label">
+          <span class="ba-point-title">पहले</span>
+          <span class="ba-point-desc">Focus नहीं, पढ़ाई खराब</span>
+        </div>
+      </div>
+      <div class="ba-point a-col">
+        <div class="ba-point-img">
+          <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&h=160&fit=crop&auto=format" alt="focused study" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.7;">
+          <span class="ba-point-emoji" style="position:relative;z-index:2;">🎯</span>
+        </div>
+        <div class="ba-point-label">
+          <span class="ba-point-title">बाद में</span>
+          <span class="ba-point-desc">Focus बढ़ा, पढ़ाई बेहतर</span>
+        </div>
+      </div>
+      <div class="ba-point b-col">
+        <div class="ba-point-img">
+          <img src="https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=200&h=160&fit=crop&auto=format" alt="bad sleep" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.7;filter:saturate(0)">
+          <span class="ba-point-emoji" style="position:relative;z-index:2;">😩</span>
+        </div>
+        <div class="ba-point-label">
+          <span class="ba-point-title">पहले</span>
+          <span class="ba-point-desc">रात को ठीक से नींद नहीं</span>
+        </div>
+      </div>
+      <div class="ba-point a-col">
+        <div class="ba-point-img">
+          <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=200&h=160&fit=crop&auto=format" alt="good sleep" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.7;">
+          <span class="ba-point-emoji" style="position:relative;z-index:2;">😴</span>
+        </div>
+        <div class="ba-point-label">
+          <span class="ba-point-title">बाद में</span>
+          <span class="ba-point-desc">नींद अच्छी, routine ठीक</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AYURVEDA SECTION ===== -->
+  <section class="ayurveda">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Ayurveda क्या कहता है?</span>
+      <div class="section-label-line"></div>
+    </div>
+    <h2 class="section-title">Ayurveda की शक्ति से बच्चे का Balance</h2>
+    <p class="section-sub">Ayurveda के अनुसार बच्चों में बढ़ा हुआ वात और मानसिक असंतुलन behaviour issues का कारण बन सकता है</p>
+
+    <div class="ayur-header">
+      <div class="ayur-header-img">
+        <img src="https://images.unsplash.com/photo-1612833603922-8f1a17a3c0ce?w=140&h=140&fit=crop&auto=format" alt="ayurveda">
+      </div>
+      <div class="ayur-header-text">
+        <h4>इसलिए parents natural solution की ओर बढ़ रहे हैं</h4>
+        <p>Ayurvedic herbs mind को balance करने और nervous system को strengthen करने में मदद करते हैं — बिना side effects के long-term support के साथ</p>
+      </div>
+    </div>
+
+    <div class="ayur-points">
+      <div class="ayur-point">
+        <div class="ayur-point-img">
+          <img src="https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?w=140&h=140&fit=crop&auto=format" alt="balance" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="ap-emoji" style="position:relative;z-index:2;">⚖️</span>
+        </div>
+        <div class="ayur-point-content">
+          <h5>Ayurvedic herbs mind को balance करते हैं</h5>
+          <p>प्राचीन Ayurvedic formulas बच्चे के mental balance को naturally improve करते हैं</p>
+        </div>
+      </div>
+      <div class="ayur-point">
+        <div class="ayur-point-img">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=140&h=140&fit=crop&auto=format" alt="nervous system" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="ap-emoji" style="position:relative;z-index:2;">💪</span>
+        </div>
+        <div class="ayur-point-content">
+          <h5>Nervous System को Strengthen करते हैं</h5>
+          <p>बच्चे का nervous system strong होने पर stress और anger automatically कम होता है</p>
+        </div>
+      </div>
+      <div class="ayur-point">
+        <div class="ayur-point-img">
+          <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=140&h=140&fit=crop&auto=format" alt="safe natural" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="ap-emoji" style="position:relative;z-index:2;">🛡️</span>
+        </div>
+        <div class="ayur-point-content">
+          <h5>बिना Side Effects के Long-Term Support</h5>
+          <p>100% natural Ayurvedic ingredients से बनी formula जो long-term safe है</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE STRIP -->
+  <div style="width:100%;height:140px;overflow:hidden;position:relative;">
+    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=450&h=280&fit=crop&auto=format" alt="ayurvedic herbs" style="width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:rgba(168,30,30,0.5);display:flex;align-items:center;justify-content:center;">
+      <p style="font-family:'Halant',serif;font-size:20px;font-weight:700;color:var(--yellow);text-align:center;padding:0 20px;text-shadow:0 2px 8px rgba(0,0,0,0.6);">🌿 प्रकृति की शक्ति, बच्चे की सुरक्षा</p>
+    </div>
+  </div>
+
+  <!-- ===== INGREDIENTS ===== -->
+  <section class="ingredients">
+    <div class="section-label">
+      <div class="section-label-line" style="background:rgba(255,215,0,0.4)"></div>
+      <span style="color:var(--yellow)">Key Ingredients</span>
+      <div class="section-label-line" style="background:rgba(255,215,0,0.4)"></div>
+    </div>
+    <h2 class="section-title">🌱 शक्तिशाली Ayurvedic Ingredients</h2>
+    <p class="section-sub">प्रकृति के सर्वश्रेष्ठ herbs का powerful combination</p>
+
+    <div class="ingr-grid">
+      <div class="ingr-card">
+        <div class="ingr-card-img">
+          <img src="https://images.unsplash.com/photo-1611241897027-9a2c93403b46?w=220&h=200&fit=crop&auto=format" alt="Ashwagandha" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="ingr-emoji" style="position:relative;z-index:2;text-shadow:0 2px 8px #000;">🌿</span>
+        </div>
+        <div class="ingr-card-body">
+          <h5>Ashwagandha</h5>
+          <p>stress कम करने में सहायक, बच्चे को mentally strong बनाता है</p>
+        </div>
+      </div>
+      <div class="ingr-card">
+        <div class="ingr-card-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=220&h=200&fit=crop&auto=format" alt="Brahmi" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="ingr-emoji" style="position:relative;z-index:2;text-shadow:0 2px 8px #000;">🍃</span>
+        </div>
+        <div class="ingr-card-body">
+          <h5>Brahmi</h5>
+          <p>memory और focus improve करता है, पढ़ाई में help करता है</p>
+        </div>
+      </div>
+      <div class="ingr-card">
+        <div class="ingr-card-img">
+          <img src="https://images.unsplash.com/photo-1490750967868-88df5691cc8a?w=220&h=200&fit=crop&auto=format" alt="Shankhpushpi" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="ingr-emoji" style="position:relative;z-index:2;text-shadow:0 2px 8px #000;">🌸</span>
+        </div>
+        <div class="ingr-card-body">
+          <h5>Shankhpushpi</h5>
+          <p>mind को calm करता है और anxiety reduce करता है</p>
+        </div>
+      </div>
+      <div class="ingr-card">
+        <div class="ingr-card-img">
+          <img src="https://images.unsplash.com/photo-1503262028195-93c528f03218?w=220&h=200&fit=crop&auto=format" alt="Giloy" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="ingr-emoji" style="position:relative;z-index:2;text-shadow:0 2px 8px #000;">💚</span>
+        </div>
+        <div class="ingr-card-body">
+          <h5>Giloy</h5>
+          <p>overall balance और immunity support करता है</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW TO USE ===== -->
+  <section class="how-use">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>कैसे इस्तेमाल करें?</span>
+      <div class="section-label-line"></div>
+    </div>
+    <h2 class="section-title">Use करना बेहद आसान!</h2>
+    <p class="section-sub">बस इन 3 simple steps को follow करें</p>
+
+    <div class="use-steps">
+      <div class="use-step">
+        <div class="use-step-dot">1</div>
+        <div class="use-step-content">
+          <div class="use-step-img" style="background: var(--red-dark);">
+            <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=410&h=160&fit=crop&auto=format" alt="दूध के साथ" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.5;">
+            <span class="use-emoji" style="position:relative;z-index:2;">🥛</span>
+          </div>
+          <div class="use-step-text">
+            <h5>दूध या पानी के साथ लें</h5>
+            <p>रोज़ाना 1–2 बार दूध या पानी के साथ आसानी से दे सकते हैं</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="use-step">
+        <div class="use-step-dot">2</div>
+        <div class="use-step-content">
+          <div class="use-step-img" style="background: var(--red);">
+            <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=410&h=160&fit=crop&auto=format" alt="daily routine" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.5;">
+            <span class="use-emoji" style="position:relative;z-index:2;">📅</span>
+          </div>
+          <div class="use-step-text">
+            <h5>Routine में शामिल करें</h5>
+            <p>Doctor या label के अनुसार daily routine में include करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="use-step">
+        <div class="use-step-dot">3</div>
+        <div class="use-step-content">
+          <div class="use-step-img" style="background: var(--red-dark);">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=410&h=160&fit=crop&auto=format" alt="consistent use" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0.5;">
+            <span class="use-emoji" style="position:relative;z-index:2;">⏰</span>
+          </div>
+          <div class="use-step-text">
+            <h5>4–6 हफ्ते नियमित Use करें</h5>
+            <p>Minimum 4–6 हफ्ते regular use करने पर best results दिखते हैं</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST SECTION ===== -->
+  <section class="trust-section">
+    <div class="trust-title">✅ Certified & Trusted</div>
+    <div class="trust-row">
+      <div class="trust-item">
+        <div class="trust-icon">🌿</div>
+        <div class="trust-label">Ayurvedic Formulation</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🔬</div>
+        <div class="trust-label">Quality Tested Ingredients</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">👨‍👩‍👧</div>
+        <div class="trust-label">Thousands of Parents Trust</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OFFER SECTION ===== -->
+  <section class="offer-section">
+    <div class="section-label">
+      <div class="section-label-line" style="background:rgba(255,215,0,0.4)"></div>
+      <span style="color:var(--yellow)">Limited Time Offer</span>
+      <div class="section-label-line" style="background:rgba(255,215,0,0.4)"></div>
+    </div>
+    <h2 class="section-title">🔥 आज ही Order करें!</h2>
+
+    <div class="offer-countdown">
+      <div class="offer-countdown-label">⏳ यह Offer खत्म होने में</div>
+      <div class="countdown-digits">
+        <div class="cd-box"><span id="cdH">02</span><span>घंटे</span></div>
+        <div class="cd-colon">:</div>
+        <div class="cd-box"><span id="cdM">47</span><span>मिनट</span></div>
+        <div class="cd-colon">:</div>
+        <div class="cd-box"><span id="cdS">33</span><span>सेकंड</span></div>
+      </div>
+    </div>
+
+    <div class="offer-cards">
+      <div class="offer-card">
+        <span class="offer-card-icon">🚚</span>
+        <div class="offer-card-text">
+          <h5>Free Delivery</h5>
+          <p>पूरे India में बिल्कुल मुफ्त डिलीवरी — कोई extra charge नहीं</p>
+        </div>
+      </div>
+      <div class="offer-card">
+        <span class="offer-card-icon">📋</span>
+        <div class="offer-card-text">
+          <h5>Free Diet Chart</h5>
+          <p>साथ में पाएं expert द्वारा बनाया गया बच्चों का Diet Chart — बिल्कुल Free</p>
+        </div>
+      </div>
+      <div class="offer-card">
+        <span class="offer-card-icon">💵</span>
+        <div class="offer-card-text">
+          <h5>Cash on Delivery Available</h5>
+          <p>पहले product पाएं, फिर pay करें — 100% safe और easy</p>
+        </div>
+      </div>
+      <div class="offer-card">
+        <span class="offer-card-icon">🔖</span>
+        <div class="offer-card-text">
+          <h5>10% Special Discount</h5>
+          <p>आज order करने पर 10% extra discount — Limited time offer!</p>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <!-- ===== IMAGE BANNER ===== -->
+  <div style="position:relative; width:100%; height:180px; overflow:hidden;">
+    <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=450&h=360&fit=crop&auto=format" alt="happy family" style="width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(168,30,30,0.85), rgba(168,30,30,0.3));display:flex;align-items:center;padding:20px;">
+      <div>
+        <p style="font-family:'Halant',serif;font-size:22px;font-weight:700;color:var(--yellow);line-height:1.3;margin-bottom:6px;">आपका बच्चा खुश रहे,<br>यही हमारा लक्ष्य है</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.9);line-height:1.5;">हज़ारों families ने KidsVeda पर trust किया है</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ORDER FORM ===== -->
+  <section class="order-section" id="orderSection">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>अभी Order करें</span>
+      <div class="section-label-line"></div>
+    </div>
+    <h2 class="section-title">👉 अभी ऑर्डर करें</h2>
+    <p class="section-sub">बच्चे के behaviour में बदलाव की शुरुआत करें</p>
+
+    <form class="order-form" id="orderForm" onsubmit="submitOrder(event)">
+      <div class="form-group">
+        <label>आपका नाम</label>
+        <input type="text" placeholder="अपना नाम लिखें" required>
+      </div>
+      <div class="form-group">
+        <label>मोबाइल नंबर</label>
+        <input type="tel" placeholder="10-digit mobile number" maxlength="10" required>
+      </div>
+      <button type="submit" class="submit-btn">🛒 अभी Order करें — Free Delivery</button>
+    </form>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Real Customer Results</span>
+      <div class="section-label-line"></div>
+    </div>
+    <h2 class="section-title">⭐ हज़ारों Parents का विश्वास</h2>
+    <p class="section-sub">सच्चे parents की सच्ची बातें</p>
+
+    <div class="review-cards">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-img">
+            <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=88&h=88&fit=crop&auto=format" alt="Priya">
+          </div>
+          <div class="reviewer-info">
+            <h5>Priya Sharma</h5>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="review-body">
+          <div class="review-body-img" style="overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=410&h=200&fit=crop&auto=format" alt="happy child" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <p class="review-text">"मेरे बच्चे का गुस्सा पहले बहुत ज्यादा था, अब काफी शांत हो गया है। KidsVeda से सच में फर्क दिखा।"</p>
+          <span class="review-tag">✅ Verified Purchase</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=88&h=88&fit=crop&auto=format" alt="Rahul">
+          </div>
+          <div class="reviewer-info">
+            <h5>Rahul Gupta</h5>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="review-body">
+          <div class="review-body-img" style="overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=410&h=200&fit=crop&auto=format" alt="child studying" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <p class="review-text">"धीरे-धीरे behaviour में फर्क दिखने लगा, focus भी बढ़ा है। अब बच्चा पढ़ाई में भी interest लेता है।"</p>
+          <span class="review-tag">✅ Verified Purchase</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="reviewer-img">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=88&h=88&fit=crop&auto=format" alt="Sunita">
+          </div>
+          <div class="reviewer-info">
+            <h5>Sunita Verma</h5>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="review-body">
+          <div class="review-body-img" style="overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=410&h=200&fit=crop&auto=format" alt="happy family" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <p class="review-text">"अब बच्चा पहले से ज्यादा खुश और calm रहता है। पूरे घर का माहौल भी अच्छा हो गया है। बहुत बहुत शुक्रिया!"</p>
+          <span class="review-tag">✅ Verified Purchase</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq-section">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>अक्सर पूछे जाने वाले सवाल</span>
+      <div class="section-label-line"></div>
+    </div>
+    <h2 class="section-title">❓ आपके सवाल, हमारे जवाब</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Q. क्या यह safe है बच्चों के लिए?</span>
+          <div class="faq-arrow">▼</div>
+        </div>
+        <div class="faq-a">हाँ, यह Ayurvedic formulation है और safe use के लिए बनाया गया है। इसमें 100% natural ingredients हैं जो बच्चों के लिए safe हैं।</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Q. कितने दिन में result मिलेगा?</span>
+          <div class="faq-arrow">▼</div>
+        </div>
+        <div class="faq-a">2–4 हफ्तों में noticeable बदलाव दिख सकता है। यह routine पर depend करता है। Regular use से best results मिलते हैं।</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Q. क्या इसे long-term use कर सकते हैं?</span>
+          <div class="faq-arrow">▼</div>
+        </div>
+        <div class="faq-a">हाँ, लेकिन proper guidance के साथ। Ayurvedic formulation होने से यह long-term safe है। कोई concern हो तो doctor से सलाह लें।</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Q. क्या यह हर बच्चे पर काम करेगा?</span>
+          <div class="faq-arrow">▼</div>
+        </div>
+        <div class="faq-a">हर बच्चा अलग होता है, इसलिए result vary कर सकता है। लेकिन thousands of parents को positive results मिले हैं।</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DISCLAIMER ===== -->
+  <section class="disclaimer">
+    <div class="disclaimer-inner">
+      <div class="disclaimer-icon">⚠️</div>
+      <div class="disclaimer-text">
+        <strong>Disclaimer</strong>
+        यह product किसी बीमारी का इलाज (cure) या diagnosis करने का दावा नहीं करता। यह एक Ayurvedic support है जो बच्चों के behaviour और mental balance में मदद कर सकता है। Severe condition में doctor से सलाह लेना जरूरी है।
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+</div>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <button class="sticky-cta-btn" onclick="document.getElementById('orderSection').scrollIntoView({behavior:'smooth'})">
+    🛒 अभी Order करें — Free Delivery + 10% OFF
+  </button>
+</div>
+
+<script>
+  // Before-After Slider
+  const slider = document.getElementById('baSlider');
+  const afterEl = document.getElementById('baAfter');
+  const dividerEl = document.getElementById('baDivider');
+  const handleEl = document.getElementById('baHandle');
+  let isDragging = false;
+
+  function updateSplit(x) {
+    const rect = slider.getBoundingClientRect();
+    let pct = ((x - rect.left) / rect.width) * 100;
+    pct = Math.max(5, Math.min(95, pct));
+    const val = pct + '%';
+    afterEl.style.width = val;
+    dividerEl.style.left = val;
+    handleEl.style.left = val;
+  }
+
+  slider.addEventListener('mousedown', e => { isDragging = true; updateSplit(e.clientX); });
+  document.addEventListener('mousemove', e => { if (isDragging) updateSplit(e.clientX); });
+  document.addEventListener('mouseup', () => isDragging = false);
+  slider.addEventListener('touchstart', e => { isDragging = true; updateSplit(e.touches[0].clientX); }, {passive:true});
+  document.addEventListener('touchmove', e => { if (isDragging) updateSplit(e.touches[0].clientX); }, {passive:true});
+  document.addEventListener('touchend', () => isDragging = false);
+
+  // Auto animate slider on load
+  let autoDir = -1, autoPos = 50;
+  const autoAnim = setInterval(() => {
+    if (!isDragging) {
+      autoPos += autoDir * 0.4;
+      if (autoPos <= 20 || autoPos >= 80) autoDir *= -1;
+      const rect = slider.getBoundingClientRect();
+      const x = rect.left + (autoPos / 100) * rect.width;
+      updateSplit(x);
+    }
+  }, 16);
+
+  // FAQ Toggle
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Countdown Timer
+  let totalSecs = 2 * 3600 + 47 * 60 + 33;
+  setInterval(() => {
+    if (totalSecs > 0) totalSecs--;
+    const h = Math.floor(totalSecs / 3600);
+    const m = Math.floor((totalSecs % 3600) / 60);
+    const s = totalSecs % 60;
+    document.getElementById('cdH').textContent = String(h).padStart(2, '0');
+    document.getElementById('cdM').textContent = String(m).padStart(2, '0');
+    document.getElementById('cdS').textContent = String(s).padStart(2, '0');
+  }, 1000);
+
+  // Order Form Submit
+  function submitOrder(e) {
+    e.preventDefault();
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.classList.add('active');
+    setTimeout(() => {
+      overlay.classList.remove('active');
+      document.getElementById('successPopup').classList.add('active');
+      e.target.reset();
+    }, 2500);
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pain-card, .work-item, .ingr-card, .review-card, .ayur-point').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
